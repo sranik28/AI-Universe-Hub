@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"data-theme="light">
+<html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +8,11 @@
 
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <title>AI-Universe-Hub</title>
 </head>
+
 <body>
     <header>
         <h1 class="text-center font-bold text-3xl my-5">AI Universe Hub</h1>
@@ -18,12 +21,35 @@
     <main>
         <!-- card section start -->
         <section>
-            <div id="card-details" class="grid grid-cols-1 lg:grid-cols-3 gap-4">                
+            <div id="card-details" class="grid grid-cols-1 lg:grid-cols-3 gap-4">
             </div>
         </section>
         <button class="btn btn-outline btn-error my-8 block mx-auto">See More</button>
     </main>
+    <!-- modal section -->
+    <section>
+        <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+        <div class="modal">
+            <div class="bg-white p-10 rounded-xl relative">
+                <label for="my-modal-3" class="btn btn-sm btn-circle absolute -right-2 -top-2">✕</label>
+                <div class="md:flex">
+                    <div class="card w-96 bg-base-100 shadow-xl">
+                        <div class="card-body">
+                          <h2 class="card-title"></h2>
+                          <p></p>
+                        </div>
+                      </div>
+                      <!-- modal left site -->
+                    <div class="card w-96 bg-base-100 shadow-xl">
+                        <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- js File -->
     <script src="script.js"></script>
 </body>
+
 </html>
