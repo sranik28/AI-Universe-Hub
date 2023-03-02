@@ -19,6 +19,11 @@
         <button class="btn btn-outline btn-error my-8 block mx-auto">Sort By Date</button>
     </header>
     <main>
+    </main>
+    <!--spinner  -->
+    <section class="flex justify-center items-center my-5">
+        <button id="spinner" class="btn btn-square loading hidden"></button>
+    </section>
         <!-- card section start -->
         <section>
             <div id="card-details" class="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -35,13 +40,13 @@
                 <div class="md:flex">
                     <div class="card w-96 bg-base-100 shadow-xl">
                         <div class="card-body">
-                          <h2 class="card-title"></h2>
+                          <h2 id="modal-description" class="card-title"></h2>
                           <p></p>
                         </div>
                       </div>
-                      <!-- modal left site -->
+                      <!-- modal right site -->
                     <div class="card w-96 bg-base-100 shadow-xl">
-                        <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+                        <figure><img id="modal-img" src="" alt="Shoes" /></figure>
                         </div>
                       </div>
                 </div>
