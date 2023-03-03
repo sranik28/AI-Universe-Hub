@@ -26,10 +26,21 @@ const allDataLoad = async () => {
     const res = await fetch(url);
     const data = await res.json();
     const toolsData = data.data.tools;
-    console.log(toolsData)
+    // console.log(toolsData)
     const tools = toolsData.slice(0, count);
-    const cardDetails = document.getElementById('card-details')
-    
+    const cardDetails = document.getElementById('card-details');
+    cardDetails.innerHTML = '';
+
+    // see more
+    const seeMoreBtn = document.getElementById('see-more-btn');
+    if(toolsData.length === 0) {
+      seeMoreBtn.classList.add("hidden");
+  }
+    seeMoreBtn.onclick = () => {
+      count = toolsData.length;
+      allDataLoad();
+      seeMoreBtn.classList.add("hidden")
+  }
     tools.forEach(tool => {
         cardDetails.innerHTML += `
         <div class="card w-96 mx-5 bg-base-100 shadow-xl">
@@ -57,6 +68,4 @@ const allDataLoad = async () => {
     })
     spinner(false)
 }
-
-
 allDataLoad()
