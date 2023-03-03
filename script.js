@@ -20,27 +20,9 @@ const spinner = (isLoading) => {
     document.getElementById('spinner').classList.add('hidden');
   }
 }
-const allDataLoad = async () => {
-  spinner(true)
-    const url = "https://openapi.programming-hero.com/api/ai/tools";
-    const res = await fetch(url);
-    const data = await res.json();
-    const toolsData = data.data.tools;
-    // console.log(toolsData)
-    const tools = toolsData.slice(0, count);
-    const cardDetails = document.getElementById('card-details');
-    cardDetails.innerHTML = '';
-
-    // see more
-    const seeMoreBtn = document.getElementById('see-more-btn');
-    if(toolsData.length === 0) {
-      seeMoreBtn.classList.add("hidden");
-  }
-    seeMoreBtn.onclick = () => {
-      count = toolsData.length;
-      allDataLoad();
-      seeMoreBtn.classList.add("hidden")
-  }
+const showData =  (tools) => {
+  const cardDetails = document.getElementById('card-details');
+  cardDetails.innerHTML = '';
     tools.forEach(tool => {
         cardDetails.innerHTML += `
         <div class="card w-96 mx-5 bg-base-100 shadow-xl">
@@ -66,6 +48,40 @@ const allDataLoad = async () => {
                   </div>                  
         `
     })
+}
+const allDataLoad = async () => {
+  spinner(true)
+  const url = "https://openapi.programming-hero.com/api/ai/tools";
+  const res = await fetch(url);
+  const data = await res.json();
+  const toolsData = data.data.tools;
+  // console.log(toolsData)
+  const tools = toolsData.slice(0, count);
+  const sortByDate = () => {
+    tools.sort(function(a, b){        
+        return new Date(a.published_in) - new Date(b.published_in);
+    });
+}
+// sortBtn click event  
+const sortBtn = document.getElementById("sort-date-btn");
+sortBtn.addEventListener("click",  () => {
+    sortByDate();
+    showData(tools);
+})
+showData(tools);
+
+  // see more
+  const seeMoreBtn = document.getElementById('see-more-btn');
+  if(toolsData.length === 0) {
+    seeMoreBtn.classList.add("hidden");
+}
+  seeMoreBtn.onclick = () => {
+    count = toolsData.length;
+    allDataLoad();
+    seeMoreBtn.classList.add("hidden")
+}
+    
     spinner(false)
 }
+
 allDataLoad()
