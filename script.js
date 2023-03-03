@@ -1,16 +1,6 @@
 let count = 6;
 // modal
-const showModal = async (id)=> {
-  const url =`https://openapi.programming-hero.com/api/ai/tool/${id}`;
-  const res = await fetch(url);
-  const data = await res.json();
-  console.log(data.data)
-  const modal = data.data
-  document.getElementById("my-modal-3").checked  = true;
-  document.getElementById('modal-img').src =`${modal.image_link[0]}`
-  document.getElementById('modal-description').innerText =`${modal.description}`
-  document.getElementById('')
-}
+
 // spinner
 const spinner = (isLoading) => {
   if(isLoading){
