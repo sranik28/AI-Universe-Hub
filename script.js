@@ -10,24 +10,24 @@ function accuracyTagAdder (score) {
 }
 // modal data load function load 
 const showModal = async (id) => {    
-    const url =` https://openapi.programming-hero.com/api/ai/tool/${id}`;
-    const response = await fetch(url);
-    const data = await response.json();
+    const url =`https://openapi.programming-hero.com/api/ai/tool/${id}`;
+    const res = await fetch(url);
+    const data = await res.json();
     const modal = data.data;
     document.getElementById("my-modal-3").checked = true;
     document.getElementById("modal-img").src = `${modal.image_link[0]}`;
     document.getElementById("modal-description").innerText = `${modal.description}`;
     document.getElementById("modal-input").innerText = `${modal.input_output_examples ? modal.input_output_examples[0].input : "Can you give any example?"}`;
-    document.getElementById("modal-output").innerText =` ${modal.input_output_examples ? modal.input_output_examples[0].output: "No! Not Yet! Take a break" }`;
+    document.getElementById("modal-output").innerText =`${modal.input_output_examples ? modal.input_output_examples[0].output: "No! Not Yet! Take a break" }`;
     `${modal.accuracy.score ?  accuracyTagAdder(modal.accuracy.score * 100 + "% accuracy") : accuracyTagRemover()}`;
+    document.getElementById("price1").innerText = `${modal.pricing ? modal.pricing[0].price : "Free of cost"} Basic`;
     document.getElementById("price2").innerText =`${modal.pricing ? modal.pricing[1].price : "Free of cost"} Pro`;
     document.getElementById("price3").innerText = `${modal.pricing ? modal.pricing[2].price : "Free of cost"} Enterprise`;
-    document.getElementById("price1").innerText = `${modal.pricing ? modal.pricing[0].price : "Free of cost"} Basic`;
     const features = document.getElementById("features");
     const integrations = document.getElementById("integrations");
     features.innerHTML = "";
     integrations.innerHTML = "";
-    const featuresList = modal.features ? featureAdder(modal.features) : featureAdder("");
+    const featuresList = modal.features ? featureAdder(modal.features): featureAdder("");
     function featureAdder(featuresLists) { 
         try{
             for(let feature in featuresLists) {
@@ -35,8 +35,7 @@ const showModal = async (id) => {
             }
         } catch (err) {
             features.innerHTML = "No data found";
-        }
-        
+        }       
     }
     const integrationsList = modal.integrations ? integrationsAdder(modal.integrations) : integrationsAdder("");
 
@@ -47,13 +46,12 @@ const showModal = async (id) => {
             })
         } catch(err) {
             integrations.innerText = "No data found";
-        }
-        
-    }
-
-    
+        }        
+    }    
 }
+
 // spinner
+
 const spinner = (isLoading) => {
   if(isLoading){
     document.getElementById('spinner').classList.remove('hidden');
@@ -62,6 +60,8 @@ const spinner = (isLoading) => {
     document.getElementById('spinner').classList.add('hidden');
   }
 }
+
+
 const showData =  (tools) => {
   const cardDetails = document.getElementById('card-details');
   cardDetails.innerHTML = '';
@@ -91,20 +91,22 @@ const showData =  (tools) => {
         `
     })
 }
+
 const allDataLoad = async () => {
   spinner(true)
   const url = "https://openapi.programming-hero.com/api/ai/tools";
   const res = await fetch(url);
   const data = await res.json();
   const toolsData = data.data.tools;
-  // console.log(toolsData)
   const tools = toolsData.slice(0, count);
   const sortByDate = () => {
     tools.sort(function(a, b){        
         return new Date(a.published_in) - new Date(b.published_in);
     });
 }
-// sortBtn click event  
+
+// sortBtn click event
+
 const sortBtn = document.getElementById("sort-date-btn");
 sortBtn.addEventListener("click",  () => {
     sortByDate();
@@ -114,9 +116,6 @@ showData(tools);
 
   // see more
   const seeMoreBtn = document.getElementById('see-more-btn');
-  if(toolsData.length === 0) {
-    seeMoreBtn.classList.add("hidden");
-}
   seeMoreBtn.onclick = () => {
     count = toolsData.length;
     allDataLoad();
@@ -125,5 +124,4 @@ showData(tools);
     
     spinner(false)
 }
-
 allDataLoad()
