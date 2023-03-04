@@ -13,13 +13,12 @@
     <title>AI-Universe-Hub</title>
 </head>
 
-<body>
+<body class="max-w-[1200px] mx-auto">
     <header>
         <h1 class="text-center font-bold text-3xl my-5">AI Universe Hub</h1>
         <button id="sort-date-btn" class="btn btn-outline btn-error my-8 block mx-auto">Sort By Date</button>
     </header>
-    <main>
-    </main>
+    
     <!--spinner  -->
     <section class="flex justify-center items-center my-5">
         <button id="spinner" class="btn btn-square loading hidden"></button>
@@ -32,12 +31,11 @@
     <section id="see-more-btn">
         <button class="btn btn-outline btn-error my-8 block mx-auto">See More</button>
     </section>
-    </main>
     <!-- modal section -->
 
     <!-- modal -->
     <input type="checkbox" id="my-modal-3" class="modal-toggle" />
-    <div class="modal">
+    <div class="modal grid grid-col overflow-y-auto">
         <div class="bg-white p-10 relative rounded-xl">
             <label for="my-modal-3"
                 class="btn btn-sm btn-circle absolute top-[6%] right-1 sm:right-2 sm:top-[6%] md:-right-5 md:-top-5 bg-[#EB5757] border-0">✕</label>
@@ -47,7 +45,7 @@
                     <div class="card-body">
                         <h2 class="font-bold text-xl" id="modal-description"></h2>
                         <!-- pricing  -->
-                        <section class="grid md:grid-cols-3 gap-2">
+                        <section class="grid  md:grid-cols-3 gap-2">
                             <div class="bg-[#FFFFFF] p-4 rounded font-bold text-green-400" id="price1"></div>
                             <div class="bg-[#FFFFFF] p-4 rounded font-bold text-orange-400" id="price2"></div>
                             <div class="bg-[#FFFFFF] p-4 rounded font-bold text-red-500" id="price3"></div>
